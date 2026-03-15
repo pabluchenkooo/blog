@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on myblog</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on myblog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 14 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My first blog post</title>
+      <link>http://localhost:1313/posts/my-first-blog-post/</link>
+      <pubDate>Sat, 14 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/my-first-blog-post/</guid>
+      <description>&lt;h2 id=&#34;march-2026&#34;&gt;March 2026&lt;/h2&gt;&#xA;&lt;p&gt;This is a small test entry to see if everything works.&lt;/p&gt;&#xA;&lt;p&gt;The idea is simple: create a place to log the things I do and think about — climbing sessions, bikepacking trips, slackline days, woodworking projects, and random thoughts that come up along the way.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:1313/posts/tech/important-stuff-configuring-this-blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/tech/important-stuff-configuring-this-blog/</guid>
+      <description>&lt;p&gt;this mirroring command is important:&#xA;rsync -av &amp;ndash;delete /Users/pablo/Documents/Obsidian\ Vault/blog/content /Users/pablo/pablo/pabloblog/&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/Screenshot%202026-03-15%20at%2002.03.43.png&#34; alt=&#34;Screenshot 2026-03-15 at 02.03.43.png&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;/Users/pablo/Documents/Obsidian Vault/Screenshot 2026-03-15 at 02.03.43.png&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
