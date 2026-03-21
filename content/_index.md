@@ -1,10 +1,9 @@
 ---
-title: My blog title wip
-description: A personal log of the things I do, make, and think about. Not a highlight reel.
-featured_image: "/images/hero.jpg"
+title: "@pabluchenkooo"
+description: Fuck ig
+featured_image: "/images/JPJ_9465.jpeg"
 # cover_dimming_class: "bg-black-60"
 ---
-
 A personal log of the things I do, make, and think about.
 
 Not a highlight reel.  
