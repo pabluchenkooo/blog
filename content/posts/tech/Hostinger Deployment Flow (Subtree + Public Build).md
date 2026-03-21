@@ -18,7 +18,7 @@ The flow:
 5. Clean up
 
 ---
-![[JPJ_9441.jpeg]]
+![JPJ_9441.jpeg](/images/JPJ_9441.jpeg)
 ## 🔁 Full Deployment Script
 
 ```bash
