@@ -1,0 +1,566 @@
+/* ============================================================
+   PABLOBLOG — Berliner Vintage
+   Cool stone · stark black · one rust accent · minimal
+   Fonts: Special Elite · Lora · Oswald
+   ============================================================ */
+
+:root {
+  --stone:        #e9e5de;   /* cool limestone background */
+  --stone-mid:    #d6d1c8;   /* slightly darker, cards/aside */
+  --stone-dark:   #bfb8ac;   /* borders, dividers */
+  --ink:          #111111;   /* near black */
+  --ink-mid:      #4a4a4a;   /* body gray */
+  --ink-light:    #888888;   /* meta, captions */
+  --rust:         #c04e28;   /* single warm accent */
+  --rust-dark:    #8a3018;   /* hover / darker accent */
+  --rust-pale:    rgba(192,78,40,0.10);
+  --white:        #f7f5f1;   /* card / highlight surface */
+
+  --font-head: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Lora', Georgia, serif;
+  --font-ui:   'Barlow Condensed', 'Arial Narrow', sans-serif;
+}
+
+/* ---- BASE ---- */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+/* subtle cool paper grain */
+body {
+  background-color: var(--stone) !important;
+  color: var(--ink) !important;
+  font-family: var(--font-body) !important;
+  font-size: 1.05rem;
+  line-height: 1.82;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* Tachyons overrides */
+.bg-white,
+.bg-near-white  { background-color: var(--stone) !important; }
+.bg-black-60    { background: rgba(0, 0, 0, 0.30) !important; }
+.black,
+.near-black,
+.dark-gray,
+.mid-gray       { color: var(--ink) !important; }
+
+/* ---- TYPOGRAPHY ---- */
+
+h1, h2, h3, h4, h5, h6,
+.f1, .f2, .f3, .f4,
+article h1, article h2, article h3, article h4, article h5, article h6,
+.nested-copy-line-height h1,
+.nested-copy-line-height h2,
+.nested-copy-line-height h3,
+.nested-copy-line-height h4,
+.nested-copy-line-height h5,
+.nested-copy-line-height h6,
+.nested-links h1,
+.nested-links h2,
+.nested-links h3 {
+  font-family: var(--font-head) !important;
+  color: var(--ink) !important;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+
+h3, .f3 {
+  border-bottom: 1px solid var(--stone-dark);
+  padding-bottom: 0.25em;
+}
+
+strong, b { color: var(--ink); }
+em, i     { color: var(--ink-mid); }
+
+p { margin-bottom: 1.2em; }
+
+/* ---- LINKS ---- */
+
+a, a:visited {
+  color: var(--rust) !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(192,78,40,0.4);
+  text-underline-offset: 3px;
+  transition: color 0.12s, text-decoration-color 0.12s;
+}
+
+a:hover, a:focus {
+  color: var(--rust-dark) !important;
+  text-decoration-color: var(--rust-dark);
+}
+
+/* ---- SITE HEADER ---- */
+
+/* the outer header just needs the rust border */
+header.cover {
+  border-bottom: 3px solid var(--rust) !important;
+  position: relative;
+}
+
+/* bg-black-60 is the full-height inner wrapper — this is where we control height + layout */
+header.cover > div.bg-black-60 {
+  min-height: 75vh;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  /* gradient: transparent at top (nav area), darker at bottom (text area) */
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.15) 40%,
+    rgba(0,0,0,0.55) 100%
+  ) !important;
+}
+
+/* title / subtitle text area — push it to the bottom */
+header.cover .tc-l {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+/* big, readable title */
+header.cover h1 {
+  font-family: var(--font-ui) !important;
+  font-size: clamp(2.4rem, 5.5vw, 5rem) !important;
+  font-weight: 600 !important;
+  font-style: normal;
+  color: #ffffff !important;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.5) !important;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+/* subtitle */
+header.cover h2,
+header.cover p {
+  color: rgba(255,255,255,0.82) !important;
+  font-family: var(--font-body) !important;
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem) !important;
+  font-weight: 400 !important;
+  font-style: italic;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5) !important;
+  letter-spacing: 0.02em;
+}
+
+/* thin rust line at very top */
+body > header::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: var(--rust);
+  position: relative;
+  z-index: 10;
+}
+
+/* ---- NAVIGATION ---- */
+
+nav a,
+.site-navigation a,
+header .white-90,
+header .white-80,
+header nav .white-90 {
+  font-family: var(--font-ui) !important;
+  color: rgba(247,245,241,0.85) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 400;
+  font-size: 0.8rem !important;
+  text-decoration: none !important;
+  padding: 0.2em 0.5em;
+  transition: color 0.15s;
+}
+
+nav a:hover,
+.site-navigation a:hover {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* site title in header */
+header .f3.fw2,
+header a.f3 {
+  font-family: var(--font-head) !important;
+  color: #f7f5f1 !important;
+  letter-spacing: 0.04em;
+  text-decoration: none !important;
+}
+
+/* ---- POST CARDS ---- */
+
+/* grid wrapper Ananke uses on the homepage */
+section.w-100.mw8 {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1.8rem !important;
+}
+
+@media (min-width: 960px) {
+  section.w-100.mw8 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* each card wrapper */
+.post-card {
+  background: var(--white);
+  border: 1px solid var(--stone-dark);
+  border-top: 3px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: border-top-color 0.15s, box-shadow 0.15s;
+}
+
+.post-card:hover {
+  border-top-color: var(--rust);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* featured image */
+.post-card__image-link {
+  display: block;
+  overflow: hidden;
+  max-height: 220px;
+}
+
+.post-card__image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  border: none !important;
+  filter: contrast(1.03) saturate(0.9);
+  transition: transform 0.4s ease;
+}
+
+.post-card:hover .post-card__image {
+  transform: scale(1.03);
+}
+
+/* card body */
+.post-card__body {
+  padding: 1.5rem 1.6rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* meta row: date + tags */
+.post-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+}
+
+.post-card__meta time {
+  font-family: var(--font-ui) !important;
+  font-size: 0.72rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-light) !important;
+}
+
+.post-card__tag {
+  font-family: var(--font-ui) !important;
+  font-size: 0.65rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-light) !important;
+  border: 1px solid var(--stone-dark) !important;
+  padding: 0.1em 0.45em;
+  text-decoration: none !important;
+  transition: all 0.12s;
+}
+
+.post-card__tag:hover {
+  background: var(--ink) !important;
+  color: var(--stone) !important;
+  border-color: var(--ink) !important;
+}
+
+/* title */
+.post-card__title {
+  font-family: var(--font-head) !important;
+  font-size: 1.45rem !important;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 0.75rem !important;
+  color: var(--ink) !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.post-card__title a {
+  color: var(--ink) !important;
+  text-decoration: none !important;
+  transition: color 0.12s;
+}
+
+.post-card__title a:hover {
+  color: var(--rust) !important;
+}
+
+/* summary text */
+.post-card__summary {
+  font-family: var(--font-body) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.7;
+  color: var(--ink-mid) !important;
+  margin: 0 0 1.2rem !important;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* read more */
+.post-card__readmore {
+  font-family: var(--font-ui) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--rust) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid var(--rust);
+  padding-bottom: 1px;
+  align-self: flex-start;
+  transition: color 0.12s, border-color 0.12s;
+}
+
+.post-card__readmore:hover {
+  color: var(--rust-dark) !important;
+  border-color: var(--rust-dark);
+}
+
+/* reset generic article styles inside post-cards */
+article.post-card {
+  background: var(--white) !important;
+  border-left: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* keep single-post article unstyled */
+main > article:not(.post-card) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* ---- POST SINGLE ---- */
+
+.content-wrapper,
+.post-body,
+main article {
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+/* ---- BLOCKQUOTES ---- */
+
+blockquote {
+  border: none !important;
+  border-left: 3px solid var(--rust) !important;
+  background: var(--rust-pale) !important;
+  padding: 1em 1.5em !important;
+  margin: 1.8em 0 !important;
+  font-style: italic;
+  color: var(--ink-mid) !important;
+}
+
+/* ---- HORIZONTAL RULES ---- */
+
+hr {
+  border: none !important;
+  border-top: 1px solid var(--stone-dark) !important;
+  margin: 2.5rem 0 !important;
+  height: 1px !important;
+}
+
+/* ---- CODE ---- */
+
+code,
+kbd {
+  font-family: 'Courier New', Courier, monospace !important;
+  background: var(--stone-mid) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--stone-dark) !important;
+  padding: 0.1em 0.4em;
+  font-size: 0.88em;
+  border-radius: 2px;
+}
+
+pre {
+  background: #1a1a1a !important;
+  border: none !important;
+  border-left: 3px solid var(--rust) !important;
+  padding: 1.4em 1.5em !important;
+  overflow-x: auto;
+}
+
+/* terminal dots */
+pre::before {
+  content: '· · ·';
+  display: block;
+  color: #555;
+  font-size: 0.75rem;
+  margin-bottom: 0.8em;
+  letter-spacing: 0.4em;
+}
+
+pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #d4d0c8 !important;
+  font-size: 0.9em;
+  line-height: 1.65;
+}
+
+/* ---- TAGS ---- */
+
+a[href*="/tags/"],
+.tags a,
+.tag {
+  font-family: var(--font-ui) !important;
+  font-size: 0.7rem !important;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  background: transparent !important;
+  color: var(--ink-light) !important;
+  padding: 0.2em 0.5em !important;
+  text-decoration: none !important;
+  display: inline-block;
+  margin: 0.1em 0.1em;
+  border: 1px solid var(--stone-dark) !important;
+  transition: all 0.12s;
+}
+
+a[href*="/tags/"]:hover,
+.tags a:hover {
+  background: var(--ink) !important;
+  color: var(--stone) !important;
+  border-color: var(--ink) !important;
+}
+
+/* ---- META ---- */
+
+time,
+.reading-time,
+.meta,
+small {
+  font-family: var(--font-ui) !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-light) !important;
+}
+
+/* ---- IMAGES ---- */
+
+img {
+  border: 1px solid var(--stone-dark);
+  /* analog film feel — subtle */
+  filter: contrast(1.03) saturate(0.88);
+}
+
+figure figcaption {
+  font-family: var(--font-ui) !important;
+  font-size: 0.76rem !important;
+  text-align: center;
+  color: var(--ink-light) !important;
+  font-style: italic;
+  margin-top: 0.4em;
+}
+
+/* ---- LISTS ---- */
+
+ul li::marker { color: var(--rust); }
+ol li::marker { font-family: var(--font-ui); font-weight: 700; color: var(--ink-mid); }
+
+/* ---- FOOTER ---- */
+
+footer,
+.site-footer {
+  background-color: var(--ink) !important;
+  color: var(--stone) !important;
+  border-top: 3px solid var(--rust) !important;
+}
+
+footer a,
+.site-footer a {
+  color: var(--stone-mid) !important;
+  text-decoration: none !important;
+  transition: color 0.15s;
+}
+
+footer a:hover,
+.site-footer a:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+footer p,
+footer small {
+  color: var(--stone-mid) !important;
+}
+
+/* ---- PAGINATION ---- */
+
+.pagination a,
+.pager a,
+nav[aria-label="pagination"] a {
+  font-family: var(--font-ui) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: 1px solid var(--ink) !important;
+  color: var(--ink) !important;
+  padding: 0.4em 1.1em;
+  text-decoration: none !important;
+  display: inline-block;
+  transition: all 0.15s;
+}
+
+.pagination a:hover,
+.pager a:hover {
+  background: var(--ink) !important;
+  color: var(--stone) !important;
+}
+
+/* ---- HERO / FEATURED IMAGE ---- */
+
+.cover {
+  filter: none !important;
+}
+
+/* ---- SELECTION ---- */
+
+::selection {
+  background: var(--rust);
+  color: #fff;
+}
+
+/* ---- SCROLLBAR ---- */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--stone-mid); }
+::-webkit-scrollbar-thumb { background: var(--ink-mid); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--rust); }
+
+/* ---- RESPONSIVE ---- */
+
+@media (max-width: 768px) {
+  h1, .f1 { font-size: 1.7rem !important; }
+  h2, .f2 { font-size: 1.3rem !important; }
+  article { padding: 1.2rem 0 1rem !important; }
+}

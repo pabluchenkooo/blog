@@ -1,6 +1,6 @@
 baseURL = "https://yourdomain.com/"
 languageCode = "en-us"
-title = "myblog"
+title = "@pabluchenkooo"
 
 summaryLength = 30
 enableRobotsTXT = true
@@ -21,8 +21,8 @@ enableRobotsTXT = true
   show_reading_time = true
 
   featured_image_class = "cover bg-center"
-  background_color_class = "bg-white"
-  body_classes = "serif bg-white black"
+  background_color_class = "bg-near-white"
+  body_classes = "serif"
 
   site_logo = ""
   favicon = ""
