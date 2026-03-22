@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Climbing on @pabluchenkooo</title>
-    <link>http://localhost:1313/posts/climbing/</link>
+    <link>https://blog.pabluchenko.de/posts/climbing/</link>
     <description>Recent content in Climbing on @pabluchenkooo</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/posts/climbing/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.pabluchenko.de/posts/climbing/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
