@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Thoughts on @pabluchenkooo</title>
-    <link>http://localhost:1313/tags/thoughts/</link>
+    <link>https://blog.pabluchenko.de/tags/thoughts/</link>
     <description>Recent content in Thoughts on @pabluchenkooo</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 14 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.pabluchenko.de/tags/thoughts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My first blog post</title>
-      <link>http://localhost:1313/posts/my-first-blog-post/</link>
+      <link>https://blog.pabluchenko.de/posts/my-first-blog-post/</link>
       <pubDate>Sat, 14 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/my-first-blog-post/</guid>
+      <guid>https://blog.pabluchenko.de/posts/my-first-blog-post/</guid>
       <description>&lt;h2 id=&#34;march-2026&#34;&gt;March 2026&lt;/h2&gt;&#xA;&lt;p&gt;This is a small test entry to see if everything works.&lt;/p&gt;&#xA;&lt;p&gt;The idea is simple: create a place to log the things I do and think about — climbing sessions, bikepacking trips, slackline days, woodworking projects, and random thoughts that come up along the way.&lt;/p&gt;</description>
     </item>
   </channel>

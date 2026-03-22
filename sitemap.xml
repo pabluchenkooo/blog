@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://blog.pabluchenko.de/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/blog/</loc>
+    <loc>https://blog.pabluchenko.de/tags/blog/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cycling/</loc>
+    <loc>https://blog.pabluchenko.de/posts/cycling/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/cycling/full-bike-rebuild-checklist--trek-domane-al-2-2021-claris-r2000/</loc>
+    <loc>https://blog.pabluchenko.de/posts/cycling/full-bike-rebuild-checklist--trek-domane-al-2-2021-claris-r2000/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/tech/hostinger-deployment-flow-subtree-&#43;-public-build/</loc>
+    <loc>https://blog.pabluchenko.de/posts/tech/hostinger-deployment-flow-subtree-&#43;-public-build/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://blog.pabluchenko.de/posts/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/road-bike/</loc>
+    <loc>https://blog.pabluchenko.de/tags/road-bike/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://blog.pabluchenko.de/tags/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/tech/</loc>
+    <loc>https://blog.pabluchenko.de/posts/tech/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/tech/</loc>
+    <loc>https://blog.pabluchenko.de/tags/tech/</loc>
     <lastmod>2026-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/my-first-blog-post/</loc>
+    <loc>https://blog.pabluchenko.de/posts/my-first-blog-post/</loc>
     <lastmod>2026-03-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/thoughts/</loc>
+    <loc>https://blog.pabluchenko.de/tags/thoughts/</loc>
     <lastmod>2026-03-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://blog.pabluchenko.de/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/climbing/</loc>
+    <loc>https://blog.pabluchenko.de/posts/climbing/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/slackline/</loc>
+    <loc>https://blog.pabluchenko.de/posts/slackline/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/thoughts/</loc>
+    <loc>https://blog.pabluchenko.de/posts/thoughts/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/trips/</loc>
+    <loc>https://blog.pabluchenko.de/posts/trips/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/woodworking/</loc>
+    <loc>https://blog.pabluchenko.de/posts/woodworking/</loc>
   </url>
 </urlset>
