@@ -1,0 +1,57 @@
+{{ define "main" }}
+
+  {{/* ---- Intro from _index.md ---- */}}
+  {{ with .Content }}
+  <div class="home-intro">{{ . }}</div>
+  {{ end }}
+
+  {{ $postsPage := site.GetPage "/posts" }}
+
+  {{ if and $postsPage $postsPage.Sections }}
+
+    {{/* ---- Grouped by section ---- */}}
+    {{ range $postsPage.Sections }}
+      {{ $section := . }}
+      {{ $posts   := $section.RegularPages }}
+      <section class="home-section">
+        <div class="home-section__header">
+          <h2 class="home-section__title">{{ $section.Title }}</h2>
+          {{ with $section.Params.description }}
+            <p class="home-section__desc">{{ . }}</p>
+          {{ end }}
+          {{ if $posts }}
+            <a href="{{ $section.RelPermalink }}" class="home-section__link">All {{ $section.Title }} &rarr;</a>
+          {{ end }}
+        </div>
+        {{ if $posts }}
+          <div class="home-section__grid">
+            {{ range first 2 $posts }}
+              {{ .Render "summary-with-image" }}
+            {{ end }}
+          </div>
+        {{ else }}
+          <p class="home-section__empty">Nothing here yet.</p>
+        {{ end }}
+      </section>
+    {{ end }}
+
+  {{ else }}
+
+    {{/* ---- Fallback: recent posts flat list ---- */}}
+    {{ $recent := where site.RegularPages "Section" "posts" }}
+    {{ if $recent }}
+      <section class="home-section">
+        <div class="home-section__header">
+          <h2 class="home-section__title">Latest</h2>
+        </div>
+        <div class="home-section__grid">
+          {{ range first 6 $recent }}
+            {{ .Render "summary-with-image" }}
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+
+  {{ end }}
+
+{{ end }}
