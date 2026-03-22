@@ -1,0 +1,44 @@
+{{ define "main" }}
+
+  {{/* ---- Section hero ---- */}}
+  {{ $postCount := len .Pages }}
+  <div class="section-hero">
+    <div class="section-hero__inner">
+
+      <span class="section-hero__kicker">Field Notes</span>
+
+      <h1 class="section-hero__title">{{ .Title }}</h1>
+
+      {{ with .Params.description }}
+        <p class="section-hero__desc">{{ . }}</p>
+      {{ end }}
+
+      <div class="section-hero__meta">
+        <span class="section-hero__count">
+          {{ $postCount }} {{ if eq $postCount 1 }}entry{{ else }}entries{{ end }}
+        </span>
+        <span class="section-hero__divider">·</span>
+        <span class="section-hero__date">
+          Last updated
+          {{ with .Pages.ByDate.Reverse }}{{ (index . 0).Date | time.Format "Jan 2006" }}{{ end }}
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  {{/* ---- Post grid ---- */}}
+  <div class="section-grid-wrap">
+    {{ if .Pages }}
+      <div class="section-grid">
+        {{ range .Paginator.Pages }}
+          {{ .Render "summary-with-image" }}
+        {{ end }}
+      </div>
+      {{- template "_internal/pagination.html" . -}}
+    {{ else }}
+      <p class="section-empty">Nothing published here yet.</p>
+    {{ end }}
+  </div>
+
+{{ end }}

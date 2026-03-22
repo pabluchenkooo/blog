@@ -41,32 +41,32 @@ enableRobotsTXT = true
 
   [[menu.main]]
     name = "Climbing"
-    url = "/climbing/"
+    url = "/posts/climbing/"
     weight = 1
 
   [[menu.main]]
-    name = "Bikepacking"
-    url = "/bikepacking/"
+    name = "Cycling"
+    url = "/posts/cycling/"
     weight = 2
 
   [[menu.main]]
     name = "Highline"
-    url = "/highline/"
+    url = "/posts/slackline/"
     weight = 3
 
   [[menu.main]]
     name = "Woodworking"
-    url = "/woodworking/"
+    url = "/posts/woodworking/"
     weight = 4
 
   [[menu.main]]
     name = "Trip Logs"
-    url = "/trips/"
+    url = "/posts/trips/"
     weight = 5
 
   [[menu.main]]
     name = "Thoughts"
-    url = "/thoughts/"
+    url = "/posts/thoughts/"
     weight = 6
 
   [[menu.main]]

@@ -3,6 +3,7 @@ title: Full Bike Rebuild Checklist — Trek Domane AL 2 (2021, Claris R2000)
 date: 2026-03-21
 draft: false
 tags: ["road bike", "blog"]
+featured_image: "/images/IMG_0972.jpeg"
 ---
 
 ## 🧬 BIKE SPEC (REFERENCE)

@@ -1,15 +1,18 @@
 {{ $featured_image := partials.Include "func/GetFeaturedImage.html" . }}
 
-<article class="post-card">
+<article class="post-card{{ if not $featured_image }} post-card--no-image{{ end }}">
 
-  {{ if $featured_image }}
   <a href="{{ .RelPermalink }}" class="post-card__image-link">
-    <img src="{{ $featured_image }}" alt="{{ .Title }}" class="post-card__image">
+    {{ if $featured_image }}
+      <img src="{{ $featured_image }}" alt="{{ .Title }}" class="post-card__image">
+    {{ else }}
+      <div class="post-card__image-placeholder">
+        <span>{{ .Title | truncate 2 " " }}</span>
+      </div>
+    {{ end }}
   </a>
-  {{ end }}
 
   <div class="post-card__body">
-
     <div class="post-card__meta">
       {{ if .Date }}
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "Jan 2, 2006" }}</time>
@@ -25,10 +28,9 @@
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
     </h2>
 
-    <p class="post-card__summary">{{ .Summary | plainify | truncate 160 }}</p>
+    <p class="post-card__summary">{{ .Summary | plainify | truncate 120 }}</p>
 
     <a href="{{ .RelPermalink }}" class="post-card__readmore">Read &rarr;</a>
-
   </div>
 
 </article>
