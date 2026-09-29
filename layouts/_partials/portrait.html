@@ -1,0 +1,5 @@
+{{ with .Params.photo }}
+  <img class="portrait" src="{{ . }}" alt="Portrait of {{ site.Title }}">
+{{ else }}
+  <span class="portrait portrait--empty" aria-hidden="true">{{ substr (strings.TrimLeft "@#" site.Title) 0 1 | upper }}</span>
+{{ end }}

@@ -3,6 +3,7 @@
 <article class="post">
   <header class="post__header wrap-narrow">
     {{ with $cat }}<p class="kicker"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}
+    {{ if .Params.photo }}{{ partial "portrait.html" . }}{{ end }}
     <h1 class="post__title">{{ .Title }}</h1>
     {{ with .Description }}<p class="post__dek">{{ . }}</p>{{ end }}
     {{ if .Date }}{{ partial "meta.html" . }}{{ end }}

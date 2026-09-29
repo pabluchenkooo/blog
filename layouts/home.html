@@ -39,11 +39,22 @@
 {{ end }}
 
 <section class="wrap block split">
-  {{ with .Content }}
-    <div class="note">
-      <h2 class="rule-title"><span>About this log</span></h2>
-      <div class="prose">{{ . }}</div>
+  {{ with site.GetPage "/about" }}
+    <div class="note about">
+      <h2 class="rule-title"><span>{{ .Title }}</span></h2>
+      <div class="about__body">
+        {{ partial "portrait.html" . }}
+        <div class="prose">{{ .Summary }}</div>
+      </div>
+      {{ if .Truncated }}<a class="readmore" href="{{ .RelPermalink }}">More about me →</a>{{ end }}
     </div>
+  {{ else }}
+    {{ with .Content }}
+      <div class="note">
+        <h2 class="rule-title"><span>About this log</span></h2>
+        <div class="prose">{{ . }}</div>
+      </div>
+    {{ end }}
   {{ end }}
   {{ with site.GetPage "/posts" }}
     <aside class="sections">
