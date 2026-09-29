@@ -11,6 +11,10 @@ enableRobotsTXT = true
 [params]
   description = "Field notes from climbing walls, bikepacking routes, highlines, workshops, and wandering thoughts."
 
+  [params.contact]
+    # Formspree form endpoint, e.g. "https://formspree.io/f/abcdwxyz"
+    formspree = ""
+
 [menus]
 
   [[menus.main]]
@@ -47,3 +51,9 @@ enableRobotsTXT = true
     name = "About"
     url = "/about/"
     weight = 7
+
+  # Uncomment once the contact form service is connected
+  # [[menus.main]]
+  #   name = "Contact"
+  #   pageRef = "/contact"
+  #   weight = 8

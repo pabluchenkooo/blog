@@ -1,0 +1,93 @@
+{{ define "main" }}
+{{ $endpoint := site.Params.contact.formspree }}
+<header class="post__header wrap-narrow">
+  <p class="kicker">Get in touch</p>
+  <h1 class="post__title">{{ .Title }}</h1>
+  {{ with .Description }}<p class="post__dek">{{ . }}</p>{{ end }}
+</header>
+
+<section class="wrap-narrow contact">
+  <div class="prose contact__intro">{{ .Content }}</div>
+
+  <form class="contact-form" action="{{ $endpoint }}" method="POST" data-contact-form{{ if not $endpoint }} data-disabled{{ end }}>
+    <input type="hidden" name="_subject" value="New message from the blog">
+    {{/* Honeypot: bots fill it, humans never see it */}}
+    <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <label class="field">
+      <span>Name</span>
+      <input type="text" name="name" autocomplete="name">
+    </label>
+
+    <div class="field-row">
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" autocomplete="email" placeholder="you@example.com">
+      </label>
+      <label class="field">
+        <span>Phone / Telegram</span>
+        <input type="text" name="telegram" autocomplete="tel" placeholder="+49… or @handle">
+      </label>
+    </div>
+    <p class="field-hint">Fill in at least one, so I can write back.</p>
+
+    <label class="field">
+      <span>Message</span>
+      <textarea name="message" rows="7" required></textarea>
+    </label>
+
+    <label class="check">
+      <input type="checkbox" name="consent" value="yes" required>
+      <span>I agree that my details are used only to answer this message.</span>
+    </label>
+
+    <button class="button" type="submit">Send message →</button>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+<script>
+(function () {
+  var form = document.querySelector('[data-contact-form]');
+  if (!form) return;
+  var status = form.querySelector('.form-status');
+  var button = form.querySelector('button');
+
+  if (form.hasAttribute('data-disabled')) {
+    status.textContent = 'The contact form is not connected yet.';
+    button.disabled = true;
+    return;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.email.value.trim();
+    var telegram = form.telegram.value.trim();
+    if (!email && !telegram) {
+      status.dataset.state = 'error';
+      status.textContent = 'Please leave an email or a phone number / Telegram handle.';
+      form.email.focus();
+      return;
+    }
+    button.disabled = true;
+    status.dataset.state = '';
+    status.textContent = 'Sending…';
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (res) {
+      if (!res.ok) throw new Error();
+      form.reset();
+      status.dataset.state = 'ok';
+      status.textContent = 'Thanks! Message received. I\'ll get back to you by email or Telegram.';
+    }).catch(function () {
+      status.dataset.state = 'error';
+      status.textContent = 'Something went wrong. Please try again in a moment.';
+    }).finally(function () {
+      button.disabled = false;
+    });
+  });
+})();
+</script>
+{{ end }}
