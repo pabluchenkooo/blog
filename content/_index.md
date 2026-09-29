@@ -1,8 +1,7 @@
 ---
 title: "@pabluchenkooo"
-description: Fuck ig
-featured_image: "/images/JPJ_9465.jpeg"
-# cover_dimming_class: "bg-black-60"
+description: I stopped liking ig
+featured_image: /images/JPJ_9465.jpeg
 ---
 A personal log of the things I do, make, and think about.
 
