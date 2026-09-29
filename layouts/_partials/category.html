@@ -1,0 +1,4 @@
+{{/* Returns the post's category section page, or nothing for posts at the root of /posts. */}}
+{{ $cat := false }}
+{{ with .Parent }}{{ if and (eq .Kind "section") (ne .Path "/posts") }}{{ $cat = . }}{{ end }}{{ end }}
+{{ return $cat }}

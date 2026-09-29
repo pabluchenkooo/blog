@@ -1,0 +1,12 @@
+{{/* Returns a cover image URL: featured_image, else the first image in the post. */}}
+{{ $img := .Params.featured_image }}
+{{ if and (not $img) .File }}
+  {{ with findRESubmatch `!\[[^\]]*\]\((/[^)\s]+)` .RawContent 1 }}
+    {{ $img = index (index . 0) 1 }}
+  {{ else }}
+    {{ with findRESubmatch `!\[\[([^\]|]+\.(?i:png|jpe?g|webp|gif))` .RawContent 1 }}
+      {{ $img = printf "/images/%s" (replace (path.Base (index (index . 0) 1)) " " "%20") }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ return $img }}

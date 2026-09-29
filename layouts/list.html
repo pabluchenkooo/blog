@@ -1,0 +1,38 @@
+{{ define "main" }}
+{{ $cover := .Params.featured_image }}
+<header class="section-hero{{ with $cover }} section-hero--image{{ end }}"{{ with $cover }} style="--hero: url('{{ . }}')"{{ end }}>
+  <div class="wrap section-hero__inner">
+    <p class="kicker">{{ if eq .Kind "term" }}Tag{{ else if eq .Kind "taxonomy" }}Index{{ else }}Section{{ end }}</p>
+    <h1 class="section-hero__title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="section-hero__desc">{{ . }}</p>{{ end }}
+  </div>
+</header>
+
+<section class="wrap block">
+  {{ if eq .Kind "taxonomy" }}
+    <ul class="terms">
+      {{ range .Pages }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }} <span>{{ len .Pages }}</span></a></li>
+      {{ end }}
+    </ul>
+  {{ else }}
+    {{ $pages := .RegularPagesRecursive.ByDate.Reverse }}
+    {{ if eq .Kind "term" }}{{ $pages = .Pages.ByDate.Reverse }}{{ end }}
+    {{ if $pages }}
+      {{ $pager := .Paginate $pages }}
+      <div class="grid">
+        {{ range $pager.Pages }}{{ partial "card.html" . }}{{ end }}
+      </div>
+      {{ if gt $pager.TotalPages 1 }}
+        <nav class="pager" aria-label="Pagination">
+          {{ with $pager.Prev }}<a href="{{ .URL }}">← Newer</a>{{ else }}<span></span>{{ end }}
+          <span>{{ $pager.PageNumber }} / {{ $pager.TotalPages }}</span>
+          {{ with $pager.Next }}<a href="{{ .URL }}">Older →</a>{{ else }}<span></span>{{ end }}
+        </nav>
+      {{ end }}
+    {{ else }}
+      <p class="empty">Nothing here yet. Soon.</p>
+    {{ end }}
+  {{ end }}
+</section>
+{{ end }}

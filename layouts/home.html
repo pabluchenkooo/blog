@@ -1,0 +1,64 @@
+{{ define "main" }}
+{{ $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+
+<section class="masthead wrap">
+  <p class="masthead__issue">
+    <span>Field notes</span>
+    <span>{{ len $posts }} {{ if eq (len $posts) 1 }}entry{{ else }}entries{{ end }}</span>
+    <span>{{ now.Format "January 2006" }}</span>
+  </p>
+  <h1 class="masthead__title">{{ .Title | default site.Title }}</h1>
+  {{ with .Description }}<p class="masthead__sub">{{ . }}</p>{{ end }}
+</section>
+
+{{ with index $posts 0 }}
+  {{ $cover := partial "cover.html" . }}
+  {{ $cat := partial "category.html" . }}
+  <article class="feature wrap">
+    <a class="feature__media" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+      {{ with $cover }}<img src="{{ . }}" alt="">{{ else }}<span class="placeholder">Latest</span>{{ end }}
+    </a>
+    <div class="feature__body">
+      <p class="kicker"><span class="kicker__tag">Latest</span>{{ with $cat }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</p>
+      <h2 class="feature__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p class="feature__summary">{{ .Summary | plainify | truncate 220 }}</p>
+      {{ partial "meta.html" . }}
+      <a class="readmore" href="{{ .RelPermalink }}">Read the story →</a>
+    </div>
+  </article>
+{{ end }}
+
+{{ with after 1 $posts }}
+  <section class="wrap block">
+    <h2 class="rule-title"><span>More stories</span></h2>
+    <div class="grid">
+      {{ range first 9 . }}{{ partial "card.html" . }}{{ end }}
+    </div>
+    {{ if gt (len .) 9 }}<p class="more"><a class="readmore" href="{{ "posts/" | relURL }}">All entries →</a></p>{{ end }}
+  </section>
+{{ end }}
+
+<section class="wrap block split">
+  {{ with .Content }}
+    <div class="note">
+      <h2 class="rule-title"><span>About this log</span></h2>
+      <div class="prose">{{ . }}</div>
+    </div>
+  {{ end }}
+  {{ with site.GetPage "/posts" }}
+    <aside class="sections">
+      <h2 class="rule-title"><span>Sections</span></h2>
+      <ul>
+        {{ range .Sections }}
+          <li>
+            <a href="{{ .RelPermalink }}">
+              <span class="sections__name">{{ .Title }}</span>
+              <span class="sections__count">{{ len .RegularPagesRecursive }}</span>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    </aside>
+  {{ end }}
+</section>
+{{ end }}

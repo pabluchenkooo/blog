@@ -1,0 +1,9 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <span>{{ site.Title }} · {{ now.Year }}</span>
+    <span>
+      {{ with site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">RSS</a> · {{ end }}
+      <a href="#top" onclick="window.scrollTo({top:0});return false;">Back to top ↑</a>
+    </span>
+  </div>
+</footer>

@@ -6,70 +6,44 @@ summaryLength = 30
 enableRobotsTXT = true
 
 [pagination]
-  pagerSize = 10
-
-[module]
-[[module.imports]]
-  path = 'github.com/theNewDynamic/gohugo-theme-ananke/v2'
+  pagerSize = 12
 
 [params]
-  author = "Your Name"
   description = "Field notes from climbing walls, bikepacking routes, highlines, workshops, and wandering thoughts."
 
-  mainSections = ["posts"]
-  recent_posts_number = 6
-  show_reading_time = true
+[menus]
 
-  featured_image_class = "cover bg-center"
-  background_color_class = "bg-near-white"
-  body_classes = "serif"
-
-  site_logo = ""
-  favicon = ""
-
-  # featured_image = "/images/hero.jpg"
-  # text_color = "near-black"
-  # twitter = "yourhandle"
-  # instagram = "yourhandle"
-  # github = "yourhandle"
-  # google_analytics = ""
-
-[params.ananke]
-  show_recent_posts = true
-
-[menu]
-
-  [[menu.main]]
+  [[menus.main]]
     name = "Climbing"
-    url = "/posts/climbing/"
+    pageRef = "/posts/climbing"
     weight = 1
 
-  [[menu.main]]
+  [[menus.main]]
     name = "Cycling"
-    url = "/posts/cycling/"
+    pageRef = "/posts/cycling"
     weight = 2
 
-  [[menu.main]]
+  [[menus.main]]
     name = "Highline"
-    url = "/posts/slackline/"
+    pageRef = "/posts/slackline"
     weight = 3
 
-  [[menu.main]]
+  [[menus.main]]
     name = "Woodworking"
-    url = "/posts/woodworking/"
+    pageRef = "/posts/woodworking"
     weight = 4
 
-  [[menu.main]]
+  [[menus.main]]
     name = "Trip Logs"
-    url = "/posts/trips/"
+    pageRef = "/posts/trips"
     weight = 5
 
-  [[menu.main]]
+  [[menus.main]]
     name = "Thoughts"
-    url = "/posts/thoughts/"
+    pageRef = "/posts/thoughts"
     weight = 6
 
-  [[menu.main]]
+  [[menus.main]]
     name = "About"
     url = "/about/"
     weight = 7

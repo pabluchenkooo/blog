@@ -1,0 +1,4 @@
+<p class="meta">
+  {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2 Jan 2006" }}</time>{{ end }}
+  {{ if .ReadingTime }}<span>{{ .ReadingTime }} min read</span>{{ end }}
+</p>

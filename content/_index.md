@@ -1,5 +1,5 @@
 ---
-title: "@pabluchenkooo"
+title: "#pabluchenkooo"
 description: I stopped liking ig
 featured_image: /images/JPJ_9465.jpeg
 ---

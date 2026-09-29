@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{ $cat := partial "category.html" . }}
+<article class="post">
+  <header class="post__header wrap-narrow">
+    {{ with $cat }}<p class="kicker"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}
+    <h1 class="post__title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="post__dek">{{ . }}</p>{{ end }}
+    {{ if .Date }}{{ partial "meta.html" . }}{{ end }}
+  </header>
+
+  {{ with .Params.featured_image }}
+    <figure class="post__cover wrap"><img src="{{ . }}" alt=""></figure>
+  {{ end }}
+
+  <div class="prose wrap-narrow">
+    {{ .Content }}
+  </div>
+
+  {{ with .GetTerms "tags" }}
+    <footer class="post__tags wrap-narrow">
+      {{ range . }}<a class="chip" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}
+    </footer>
+  {{ end }}
+
+  {{ if or .PrevInSection .NextInSection }}
+    <nav class="post__nav wrap-narrow" aria-label="More in this section">
+      {{ with .NextInSection }}<a href="{{ .RelPermalink }}"><small>← Newer</small>{{ .Title }}</a>{{ else }}<span></span>{{ end }}
+      {{ with .PrevInSection }}<a class="next" href="{{ .RelPermalink }}"><small>Older →</small>{{ .Title }}</a>{{ end }}
+    </nav>
+  {{ end }}
+</article>
+{{ end }}
