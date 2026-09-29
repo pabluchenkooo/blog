@@ -1,0 +1,13 @@
+{
+  "attachmentFolderPath": "static/images",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "content/posts",
+  "alwaysUpdateLinks": true,
+  "userIgnoreFilters": [
+    "_vendor/",
+    "public/",
+    "resources/",
+    "layouts/",
+    "archetypes/"
+  ]
+}

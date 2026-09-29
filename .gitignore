@@ -1,0 +1,11 @@
+# Built by GitHub Actions, never committed
+public/
+.hugo_build.lock
+
+# macOS
+.DS_Store
+
+# Obsidian per-device state (the vault is this repo)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
