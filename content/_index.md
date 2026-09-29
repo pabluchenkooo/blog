@@ -1,5 +1,5 @@
 ---
-title: Pablo Junco
+title: Sketch Your Life
 description: I stopped liking ig
 featured_image: /images/JPJ_9465.jpeg
 ---
