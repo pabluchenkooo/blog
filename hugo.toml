@@ -49,7 +49,7 @@ enableRobotsTXT = true
 
   [[menus.main]]
     name = "About"
-    url = "/about/"
+    url = "/#about"
     weight = 7
 
   # Uncomment once the contact form service is connected
