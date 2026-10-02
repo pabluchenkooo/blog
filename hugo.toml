@@ -17,20 +17,35 @@ enableRobotsTXT = true
 
 [menus]
 
+  # A dropdown: the parent has an identifier, children point to it with parent = "..."
+  [[menus.main]]
+    name = "Sports"
+    identifier = "sports"
+    weight = 1
+
   [[menus.main]]
     name = "Climbing"
     pageRef = "/posts/climbing"
+    parent = "sports"
     weight = 1
+
+  [[menus.main]]
+    name = "Hiking"
+    pageRef = "/posts/hiking"
+    parent = "sports"
+    weight = 2
 
   [[menus.main]]
     name = "Cycling"
     pageRef = "/posts/cycling"
-    weight = 2
+    parent = "sports"
+    weight = 3
 
   [[menus.main]]
-    name = "Highline"
+    name = "Highlining"
     pageRef = "/posts/slackline"
-    weight = 3
+    parent = "sports"
+    weight = 4
 
   [[menus.main]]
     name = "Woodworking"

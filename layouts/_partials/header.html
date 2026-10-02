@@ -4,7 +4,25 @@
     <nav class="nav" aria-label="Main">
       {{ $current := . }}
       {{ range site.Menus.main }}
-        <a href="{{ .URL }}"{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a>
+        {{ if .HasChildren }}
+          {{ $active := false }}
+          {{ range .Children }}
+            {{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}{{ $active = true }}{{ end }}
+          {{ end }}
+          <div class="nav__group">
+            <button class="nav__toggle" type="button" aria-expanded="false"{{ if $active }} data-active{{ end }}>
+              {{ .Name }}
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>
+            </button>
+            <div class="nav__sub">
+              {{ range .Children }}
+                <a href="{{ .URL }}"{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a>
+              {{ end }}
+            </div>
+          </div>
+        {{ else }}
+          <a href="{{ .URL }}"{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a>
+        {{ end }}
       {{ end }}
     </nav>
     <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark mode">
