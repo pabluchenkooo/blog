@@ -8,9 +8,10 @@
     {{ if .Date }}{{ partial "meta.html" . }}{{ end }}
   </header>
 
-  {{ with .Params.featured_image }}
+  {{/* featured_image is a thumbnail for cards; only shown in the post with show_cover: true */}}
+  {{ if .Params.show_cover }}{{ with .Params.featured_image }}
     <figure class="post__cover wrap"><img src="{{ . }}" alt=""></figure>
-  {{ end }}
+  {{ end }}{{ end }}
 
   <div class="prose wrap-narrow">
     {{ .Content }}

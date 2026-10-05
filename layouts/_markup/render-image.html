@@ -1,8 +1,27 @@
-{{- if .Title -}}
-<figure>
-  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy">
-  <figcaption>{{ .Title }}</figcaption>
+{{- /*
+  Obsidian-friendly images.
+  - Paths relative to the vault (static/images/x.jpg) are served from /images/x.jpg.
+  - The alt text can start with a position: left, right, center, wide.
+    Anything after a "|" is the caption:  ![right|Sunset at Suta](static/images/x.jpg)
+  - Photos on consecutive lines stay inline so CSS can lay them out as a row.
+*/ -}}
+{{- $src := .Destination -}}
+{{- if hasPrefix $src "static/" }}{{ $src = strings.TrimPrefix "static" $src }}{{ end -}}
+{{- $parts := split .PlainText "|" -}}
+{{- $first := index $parts 0 | strings.TrimSpace | lower -}}
+{{- $pos := "" -}}
+{{- $caption := .Title -}}
+{{- $alt := .PlainText -}}
+{{- if in (slice "left" "right" "center" "wide") $first -}}
+  {{- $pos = $first -}}
+  {{- $alt = "" -}}
+  {{- if gt (len $parts) 1 }}{{ $caption = $caption | default (delimit (after 1 $parts) "|" | strings.TrimSpace) }}{{ $alt = $caption }}{{ end -}}
+{{- end -}}
+{{- if .IsBlock -}}
+<figure class="img img--{{ $pos | default "center" }}">
+  <img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy">
+  {{- with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
 {{- else -}}
-<img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy">
+<img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy"{{ with $caption }} title="{{ . }}"{{ end }}>
 {{- end -}}

@@ -28,8 +28,8 @@ SKIP_DIRS = {".git", ".obsidian", "public", "_vendor", "resources"}
 
 IMAGE_EXT = r"\.(?:png|jpg|jpeg|webp|gif|svg)"
 
-# Matches ![[any-image.png]] and ![[any-image.png|300]]
-WIKI_EMBED = re.compile(r'!\[\[([^\]|]+' + IMAGE_EXT + r')(?:\|[^\]]*)?\]\]', re.IGNORECASE)
+# Matches ![[any-image.png]], ![[any-image.png|300]] and ![[any-image.png|right|Caption]]
+WIKI_EMBED = re.compile(r'!\[\[([^\]|]+' + IMAGE_EXT + r')(?:\|([^\]]*))?\]\]', re.IGNORECASE)
 # Matches ![alt](any-image.png) — skips already-converted URLs (starting with / or http)
 MD_EMBED = re.compile(r'!\[([^\]]*)\]\((?!(?:/|https?://))([^)]+' + IMAGE_EXT + r')\)', re.IGNORECASE)
 
@@ -70,7 +70,12 @@ def process_file(md_file, stats):
         stats["warnings"] += 1
         return m.group(0)
 
-    text = WIKI_EMBED.sub(lambda m: replace(m, Path(m.group(1)).name, m.group(1)), text)
+    def wiki_alt(m):
+        # keep position/caption (|right|Caption); a bare number is an Obsidian size, not alt text
+        extra = (m.group(2) or "").strip()
+        return Path(m.group(1)).name if not extra or extra.isdigit() else extra
+
+    text = WIKI_EMBED.sub(lambda m: replace(m, wiki_alt(m), m.group(1)), text)
     text = MD_EMBED.sub(lambda m: replace(m, m.group(1), m.group(2)), text)
 
     if text != original:

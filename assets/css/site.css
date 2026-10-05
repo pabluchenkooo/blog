@@ -684,3 +684,48 @@ a:hover { color: var(--accent-text); }
   color: var(--ink-3);
 }
 .post__header .portrait { width: 168px; height: 168px; margin-bottom: 1.5rem; }
+
+/* ---- Photos in posts ----
+   Position comes from the alt text: ![left] ![right] ![wide] ![center] (default).
+   Photos on consecutive lines (one paragraph) become a row. */
+
+.prose .img { margin: 2.2rem 0; }
+.prose .img img { width: 100%; }
+.prose .img figcaption { font-family: var(--font-head); letter-spacing: .06em; color: var(--ink-3); margin-top: .5rem; }
+
+@media (min-width: 720px) {
+  .prose .img--left,
+  .prose .img--right { width: 46%; margin-top: .4rem; margin-bottom: 1.2rem; clear: both; }
+  .prose .img--left  { float: left;  margin-right: 1.75rem; }
+  .prose .img--right { float: right; margin-left: 1.75rem; }
+}
+@media (min-width: 1000px) {
+  .prose .img--wide,
+  .prose > p:has(> img + img) { margin-inline: -130px; }
+  .prose .img--left  { margin-left: -130px; }
+  .prose .img--right { margin-right: -130px; }
+}
+
+/* anything big starts below floated photos */
+.prose h2, .prose h3, .prose hr, .prose .img--wide, .prose .img--center,
+.prose > p:has(> img + img) { clear: both; }
+.prose::after { content: ""; display: table; clear: both; }
+
+/* photo rows */
+.prose > p:has(> img + img) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-block: 2.2rem;
+}
+.prose > p:has(> img:nth-of-type(3)) { grid-template-columns: repeat(3, 1fr); }
+.prose > p:has(> img + img) img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+@media (max-width: 640px) {
+  .prose > p:has(> img:nth-of-type(3)) { grid-template-columns: 1fr 1fr; }
+  .prose > p:has(> img:nth-of-type(3)) img:nth-of-type(3) { grid-column: span 2; aspect-ratio: 16 / 9; }
+}

@@ -16,11 +16,12 @@
             </button>
             <div class="nav__sub">
               {{ range .Children }}
+                {{ if not .URL }}{{ continue }}{{ end }}{{/* target is a draft or missing */}}
                 <a href="{{ .URL }}"{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a>
               {{ end }}
             </div>
           </div>
-        {{ else }}
+        {{ else if .URL }}
           <a href="{{ .URL }}"{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a>
         {{ end }}
       {{ end }}

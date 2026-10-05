@@ -9,5 +9,7 @@
     "resources/",
     "layouts/",
     "archetypes/"
-  ]
+  ],
+  "useMarkdownLinks": true,
+  "newLinkFormat": "shortest"
 }
