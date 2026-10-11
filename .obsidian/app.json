@@ -11,5 +11,6 @@
     "archetypes/"
   ],
   "useMarkdownLinks": true,
-  "newLinkFormat": "shortest"
+  "newLinkFormat": "shortest",
+  "vimMode": true
 }
