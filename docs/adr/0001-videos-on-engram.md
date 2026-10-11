@@ -20,7 +20,7 @@ push. Nothing extra to remember.
 ## Options
 
 | | Option | Why not (now) |
-|---|---|---|
+| --- | --- | --- |
 | A | Videos in the repo | size limits above |
 | B | Git LFS | GitHub LFS quota is small and paid; Pages doesn't serve LFS files |
 | C | YouTube / Vimeo | ads, tracking, third-party player, files leave our hands |
@@ -32,9 +32,7 @@ push. Nothing extra to remember.
 
 Videos are served from **engram** (`https://engram.pabluchenko.de/videos/`): a
 static nginx on the hum0labs VPS, behind the shared Traefik, with its files on
-a Hetzner Volume. The infrastructure lives in `hum0labs-vpn`
-(`01-base/volume.tf`, `02-services/engram/`).
-
+a Hetzner Volume.
 The flow:
 
 1. In Obsidian, drop or link a video like an image:
