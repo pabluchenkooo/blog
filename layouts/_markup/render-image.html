@@ -4,6 +4,8 @@
   - The alt text can start with a position: left, right, center, wide.
     Anything after a "|" is the caption:  ![right|Sunset at Suta](static/images/x.jpg)
   - Photos on consecutive lines stay inline so CSS can lay them out as a row.
+  - Videos (.mp4 .mov .webm .m4v) use the same syntax but are served from engram
+    (params.engram), not from the repo: see docs/adr/0001-videos-on-engram.md.
 */ -}}
 {{- $src := .Destination -}}
 {{- if hasPrefix $src "static/" }}{{ $src = strings.TrimPrefix "static" $src }}{{ end -}}
@@ -17,11 +19,19 @@
   {{- $alt = "" -}}
   {{- if gt (len $parts) 1 }}{{ $caption = $caption | default (delimit (after 1 $parts) "|" | strings.TrimSpace) }}{{ $alt = $caption }}{{ end -}}
 {{- end -}}
+{{- $isVideo := in (slice ".mp4" ".mov" ".webm" ".m4v") (path.Ext $src | lower) -}}
+{{- if $isVideo }}{{ $src = printf "%s/%s" site.Params.engram (path.Base $src) }}{{ end -}}
 {{- if .IsBlock -}}
 <figure class="img img--{{ $pos | default "center" }}">
+  {{- if $isVideo }}
+  <video src="{{ $src }}" controls playsinline preload="metadata"{{ with $alt }} aria-label="{{ . }}"{{ end }}></video>
+  {{- else }}
   <img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy">
+  {{- end }}
   {{- with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
+{{- else if $isVideo -}}
+<video src="{{ $src }}" controls playsinline preload="metadata"{{ with $alt }} aria-label="{{ . }}"{{ end }}></video>
 {{- else -}}
 <img src="{{ $src | safeURL }}" alt="{{ $alt }}" loading="lazy"{{ with $caption }} title="{{ . }}"{{ end }}>
 {{- end -}}

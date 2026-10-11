@@ -30,6 +30,9 @@ jobs:
       - name: Convert Obsidian image embeds
         run: python3 images.py
 
+      - name: Convert video embeds, check videos are on engram
+        run: python3 videos.py
+
       - id: pages
         uses: actions/configure-pages@v5
 

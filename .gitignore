@@ -9,3 +9,12 @@ public/
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 .trash/
+
+# Videos are uploaded to engram by .githooks/pre-push, never committed
+# (docs/adr/0001-videos-on-engram.md)
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.webm
+*.m4v

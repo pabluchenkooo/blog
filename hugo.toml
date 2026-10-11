@@ -16,6 +16,9 @@ enableRobotsTXT = true
 [params]
   description = "Field notes from climbing walls, bikepacking routes, highlines, workshops, and wandering thoughts."
 
+  # Where videos are served from (uploaded by .githooks/pre-push, see docs/adr/0001-videos-on-engram.md)
+  engram = "https://engram.pabluchenko.de/videos"
+
   [params.contact]
     # Formspree form endpoint, e.g. "https://formspree.io/f/abcdwxyz"
     formspree = ""

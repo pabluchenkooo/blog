@@ -1,0 +1,29 @@
+#!/bin/sh
+# Upload videos to engram before pushing (see docs/adr/0001-videos-on-engram.md).
+# Videos are gitignored; they go to the VPS instead. If the upload fails, the
+# push is aborted so no post goes live without its video.
+
+TARGET="engram@engram.pabluchenko.de:videos/"
+
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+videos=$(find . \( -path ./.git -o -path ./public -o -path ./resources -o -path ./.trash \) -prune -o \
+  -type f \( -iname '*.mp4' -o -iname '*.mov' -o -iname '*.webm' -o -iname '*.m4v' \) -print)
+
+[ -z "$videos" ] && exit 0
+
+# engram is one flat folder: two videos with the same name would overwrite each other.
+dupes=$(printf '%s\n' "$videos" | sed 's|.*/||' | sort | uniq -d)
+if [ -n "$dupes" ]; then
+  echo "pre-push: these video names are used more than once, rename them:" >&2
+  printf '%s\n' "$dupes" | sed 's/^/  /' >&2
+  exit 1
+fi
+
+echo "pre-push: uploading videos to engram..."
+# Unchanged files (same size and time) are skipped, so this is quick after the first upload.
+if ! printf '%s\n' "$videos" | tr '\n' '\0' |
+  xargs -0 sh -c 'rsync -t --partial -e "ssh -o ConnectTimeout=15" "$@" "$0"' "$TARGET"; then
+  echo "pre-push: video upload failed, push aborted. Is the engram SSH key loaded? (docs/adr/0001)" >&2
+  exit 1
+fi
