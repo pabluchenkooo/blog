@@ -7,7 +7,7 @@ tags:
   - blog
   - drawing
   - blender
-featured_image: /images/posts/making/drawing/lonely/lighting-up.jpg
+featured_image: /images/posts/making/drawing/lonely/drawing.jpg
 show_cover: false
 ---
 This one is from my sketchbook at uni: a guy with a long goat-wolf head, pointed ears with bolts in them, dreads and a big toothy grin, in a suit that's too big for him, sitting in front of a bench with guitar pedals on the shelf behind. Across the top it says LONELY. I always wanted to see him move.
