@@ -1,16 +1,6 @@
 {{ define "main" }}
 {{ $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
 
-<section class="masthead wrap">
-  <p class="masthead__issue">
-    <span>Field notes</span>
-    <span>{{ len $posts }} {{ if eq (len $posts) 1 }}entry{{ else }}entries{{ end }}</span>
-    <span>{{ now.Format "January 2006" }}</span>
-  </p>
-  <h1 class="masthead__title">{{ .Title | default site.Title }}</h1>
-  {{ with .Description }}<p class="masthead__sub">{{ . }}</p>{{ end }}
-</section>
-
 {{ with index $posts 0 }}
   {{ $cover := partial "cover.html" . }}
   {{ $cat := partial "category.html" . }}
