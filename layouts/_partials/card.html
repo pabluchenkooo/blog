@@ -1,6 +1,7 @@
 {{ $cover := partial "cover.html" . }}
 {{ $cat := partial "category.html" . }}
-<article class="card{{ if not $cover }} card--text{{ end }}">
+{{ $b := partialCached "bilingual.html" . .RelPermalink }}
+<article class="card{{ if not $cover }} card--text{{ end }}" lang="{{ $b.lang }}">
   {{ with $cover }}
     <a class="card__media" href="{{ $.RelPermalink }}" tabindex="-1" aria-hidden="true">
       <img src="{{ . }}" alt="" loading="lazy">
@@ -8,8 +9,8 @@
   {{ end }}
   <div class="card__body">
     <p class="kicker">{{ with $cat }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ else }}Notes{{ end }}</p>
-    <h3 class="card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-    {{ if not $cover }}<p class="card__summary">{{ .Summary | plainify | truncate 140 }}</p>{{ end }}
+    <h3 class="card__title"><a href="{{ .RelPermalink }}">{{ partial "pair.html" (dict "b" $b "main" $b.title "alt" $b.altTitle) }}</a></h3>
+    {{ if not $cover }}<p class="card__summary">{{ partial "pair.html" (dict "b" $b "main" ($b.summary | truncate 140) "alt" ($b.altSummary | truncate 140)) }}</p>{{ end }}
     {{ partial "meta.html" . }}
   </div>
 </article>

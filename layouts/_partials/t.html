@@ -1,0 +1,4 @@
+{{- /* A UI label in both languages; the header EN | ES switch shows one.
+       Usage: {{ partial "t.html" (dict "en" "More stories" "es" "Más historias") }} */ -}}
+<span data-l="en">{{ .en }}</span><span data-l="es" lang="es">{{ .es }}</span>
+{{- /**/ -}}

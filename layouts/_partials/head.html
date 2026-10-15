@@ -1,14 +1,42 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
-{{ $desc := .Description | default (.Summary | plainify | truncate 160) | default site.Params.description }}
+{{ $route := partial "route-lang.html" . }}
+{{ $b := partialCached "bilingual.html" . .RelPermalink }}
+{{ $title := .Title }}
+{{ $desc := .Description | default ($b.summary | truncate 160) }}
+{{ if and (eq $route $b.alt) $b.hasAlt }}
+  {{ $title = $b.altTitle }}
+  {{ $desc = $b.altDesc | default ($b.altSummary | truncate 160) }}
+{{ end }}
+{{ if .IsHome }}{{ $desc = cond (eq $route "es") site.Params.description_es site.Params.description }}{{ end }}
+{{ $desc = $desc | default site.Params.description }}
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ $title }} · {{ site.Title }}{{ end }}</title>
 <meta name="description" content="{{ $desc }}">
-<meta property="og:title" content="{{ .Title | default site.Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ $title }}{{ end }}">
 <meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{ with $route }}<meta property="og:locale" content="{{ cond (eq . "es") "es_ES" "en_US" }}">{{ end }}
 {{ with partial "cover.html" . }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+{{ with .OutputFormats.Get "en" }}<link rel="alternate" hreflang="en" href="{{ .Permalink }}">{{ end }}
+{{ with .OutputFormats.Get "es" }}<link rel="alternate" hreflang="es" href="{{ .Permalink }}">{{ end }}
+{{ with .OutputFormats.Get "html" }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">{{ end }}
 {{/* Apply saved theme before paint so there is no flash */}}
 <script>
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  // Reading language: fixed by /en/ or /es/ in the address, else the reader's last
+  // pick, else their browser language. The address bar is then moved to the
+  // matching /en/ or /es/ link, so copying it shares this language.
+  (function () {
+    var root = document.documentElement, l = root.dataset.ui;
+    try {
+      if (l) localStorage.setItem('ui-lang', l);
+      else l = localStorage.getItem('ui-lang');
+    } catch (e) {}
+    if (l !== 'en' && l !== 'es') l = /^es\b/i.test(navigator.language || '') ? 'es' : 'en';
+    root.dataset.ui = l;
+    var alt = document.querySelector('link[rel=alternate][hreflang="' + l + '"]');
+    if (alt) try { history.replaceState(null, '', new URL(alt.href).pathname + location.hash); } catch (e) {}
+  })();
 </script>
 {{ with resources.Get "css/site.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">

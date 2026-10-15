@@ -1,13 +1,14 @@
 <footer class="site-footer">
   <div class="wrap site-footer__note">
-    <strong>Nobody's watching you here</strong>
-    <p>No analytics, no ads, no cookies, no tracking pixels, no fonts phoning home to a trillion-dollar company. You're a reader, not a product, and I'm not running a surveillance business on the side. This is just a bunch of pages on the open web: the weird, free-for-all internet that was here before the platforms fenced it in and started squeezing. Read it, link it, put it in your RSS reader, leave whenever you like. Nobody's going to enshittify this place.</p>
+    <strong>{{ partial "t.html" (dict "en" "Nobody's watching you here" "es" "Aquí nadie te está vigilando") }}</strong>
+    <p data-l="en">No analytics, no ads, no cookies, no tracking pixels, no fonts phoning home to a trillion-dollar company. You're a reader, not a product, and I'm not running a surveillance business on the side. This is just a bunch of pages on the open web: the weird, free-for-all internet that was here before the platforms fenced it in and started squeezing. Read it, link it, put it in your RSS reader, leave whenever you like. Nobody's going to enshittify this place.</p>
+    <p data-l="es" lang="es">Sin analíticas, sin anuncios, sin cookies, sin píxeles de rastreo, sin fuentes que le reportan a una empresa de un billón de dólares. Eres un lector, no un producto, y no tengo un negocio de vigilancia por debajo de la mesa. Esto es solo un montón de páginas en la web abierta: el internet raro y libre para todos que existía antes de que las plataformas lo cercaran y empezaran a exprimirlo. Léelo, compártelo, ponlo en tu lector de RSS, vete cuando quieras. Nadie va a mierdificar este lugar.</p>
   </div>
   <div class="wrap site-footer__inner">
     <span>{{ site.Title }} · {{ now.Year }}</span>
     <span>
       {{ with site.Home.OutputFormats.Get "rss" }}<a href="{{ .RelPermalink }}">RSS</a> · {{ end }}
-      <a href="#top" onclick="window.scrollTo({top:0});return false;">Back to top ↑</a>
+      <a href="#top" onclick="window.scrollTo({top:0});return false;">{{ partial "t.html" (dict "en" "Back to top ↑" "es" "Volver arriba ↑") }}</a>
     </span>
   </div>
 </footer>

@@ -1,0 +1,4 @@
+{{/* Returns the post's language: front matter `language: es`, else English. */}}
+{{ $lang := "en" }}
+{{ with .Params.language }}{{ $lang = lower . }}{{ end }}
+{{ return $lang }}

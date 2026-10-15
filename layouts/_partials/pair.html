@@ -1,0 +1,7 @@
+{{- /* Post text in its own language plus the translation, if the post has one.
+       Usage: {{ partial "pair.html" (dict "b" $bilingual "main" $b.title "alt" $b.altTitle) }} */ -}}
+{{- if and .b.hasAlt .alt -}}
+<span data-l="{{ .b.lang }}" lang="{{ .b.lang }}">{{ .main }}</span><span data-l="{{ .b.alt }}" lang="{{ .b.alt }}">{{ .alt }}</span>
+{{- else -}}
+{{ .main }}
+{{- end -}}

@@ -4,43 +4,45 @@
 {{ with index $posts 0 }}
   {{ $cover := partial "cover.html" . }}
   {{ $cat := partial "category.html" . }}
-  <article class="feature wrap">
+  {{ $b := partialCached "bilingual.html" . .RelPermalink }}
+  <article class="feature wrap" lang="{{ $b.lang }}">
     <a class="feature__media" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
       {{ with $cover }}<img src="{{ . }}" alt="">{{ else }}<span class="placeholder">Latest</span>{{ end }}
     </a>
     <div class="feature__body">
-      <p class="kicker"><span class="kicker__tag">Latest</span>{{ with $cat }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</p>
-      <h2 class="feature__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-      <p class="feature__summary">{{ .Summary | plainify | truncate 220 }}</p>
+      <p class="kicker"><span class="kicker__tag">{{ partial "t.html" (dict "en" "Latest" "es" "Lo último") }}</span>{{ with $cat }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}</p>
+      <h2 class="feature__title"><a href="{{ .RelPermalink }}">{{ partial "pair.html" (dict "b" $b "main" $b.title "alt" $b.altTitle) }}</a></h2>
+      <p class="feature__summary">{{ partial "pair.html" (dict "b" $b "main" ($b.summary | truncate 220) "alt" ($b.altSummary | truncate 220)) }}</p>
       {{ partial "meta.html" . }}
-      <a class="readmore" href="{{ .RelPermalink }}">Read the story →</a>
+      <a class="readmore" href="{{ .RelPermalink }}">{{ partial "t.html" (dict "en" "Read the story →" "es" "Leer la historia →") }}</a>
     </div>
   </article>
 {{ end }}
 
 {{ with after 1 $posts }}
   <section class="wrap block">
-    <h2 class="rule-title"><span>More stories</span></h2>
+    <h2 class="rule-title"><span>{{ partial "t.html" (dict "en" "More stories" "es" "Más historias") }}</span></h2>
     <div class="grid">
       {{ range first 9 . }}{{ partial "card.html" . }}{{ end }}
     </div>
-    {{ if gt (len .) 9 }}<p class="more"><a class="readmore" href="{{ "posts/" | relURL }}">All entries →</a></p>{{ end }}
+    {{ if gt (len .) 9 }}<p class="more"><a class="readmore" href="{{ "posts/" | relURL }}">{{ partial "t.html" (dict "en" "All entries →" "es" "Todas las entradas →") }}</a></p>{{ end }}
   </section>
 {{ end }}
 
 <section class="wrap block split">
   {{ if or .Content .Params.photo }}
+    {{ $b := partial "bilingual.html" . }}
     <div class="note about" id="about">
-      <h2 class="rule-title"><span>{{ .Params.about_title | default "About me" }}</span></h2>
+      <h2 class="rule-title"><span>{{ with .Params.about_title }}{{ . }}{{ else }}{{ partial "t.html" (dict "en" "About me" "es" "Sobre mí") }}{{ end }}</span></h2>
       <div class="about__body">
         {{ partial "portrait.html" . }}
-        <div class="prose">{{ .Content }}</div>
+        {{ partial "body.html" $b }}
       </div>
     </div>
   {{ end }}
   {{ with site.GetPage "/posts" }}
     <aside class="sections">
-      <h2 class="rule-title"><span>Sections</span></h2>
+      <h2 class="rule-title"><span>{{ partial "t.html" (dict "en" "Sections" "es" "Secciones") }}</span></h2>
       <ul>
         {{ range .Sections }}
           <li>

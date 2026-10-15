@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="{{ site.Language.LanguageCode | default "en" }}">
+{{ $route := partial "route-lang.html" . }}
+<html lang="{{ with $route }}{{ . }}{{ else }}{{ if eq .Kind "page" }}{{ partial "lang.html" . }}{{ else }}en{{ end }}{{ end }}"{{ with $route }} data-ui="{{ . }}"{{ end }}>
 <head>
   {{ partial "head.html" . }}
 </head>
@@ -37,6 +38,19 @@
     });
     document.addEventListener('click', function () { closeAll(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+
+    // EN | ES switch: shows one language of every bilingual text; remembered in this browser only
+    document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+      b.setAttribute('aria-pressed', b.dataset.setLang === document.documentElement.dataset.ui);
+      b.addEventListener('click', function () {
+        document.documentElement.dataset.ui = b.dataset.setLang;
+        document.querySelectorAll('[data-set-lang]').forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
+        try { localStorage.setItem('ui-lang', b.dataset.setLang); } catch (e) {}
+        var alt = document.querySelector('link[rel=alternate][hreflang="' + b.dataset.setLang + '"]');
+        if (alt) try { history.replaceState(null, '', new URL(alt.href).pathname + location.hash); } catch (e) {}
+        document.documentElement.lang = b.dataset.setLang;
+      });
+    });
   </script>
 </body>
 </html>

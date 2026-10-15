@@ -1,10 +1,11 @@
 {{ define "main" }}
 {{ $cat := partial "category.html" . }}
-<article class="post">
+{{ $b := partialCached "bilingual.html" . .RelPermalink }}
+<article class="post" lang="{{ $b.lang }}">
   <header class="post__header wrap-narrow">
     {{ with $cat }}<p class="kicker"><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>{{ end }}
-    <h1 class="post__title">{{ .Title }}</h1>
-    {{ with .Description }}<p class="post__dek">{{ . }}</p>{{ end }}
+    <h1 class="post__title">{{ partial "pair.html" (dict "b" $b "main" $b.title "alt" $b.altTitle) }}</h1>
+    {{ with $b.desc }}<p class="post__dek">{{ partial "pair.html" (dict "b" $b "main" . "alt" $b.altDesc) }}</p>{{ end }}
     {{ if .Date }}{{ partial "meta.html" . }}{{ end }}
   </header>
 
@@ -13,8 +14,8 @@
     <figure class="post__cover wrap"><img src="{{ . }}" alt=""></figure>
   {{ end }}{{ end }}
 
-  <div class="prose wrap-narrow">
-    {{ .Content }}
+  <div class="wrap-narrow">
+    {{ partial "body.html" $b }}
   </div>
 
   {{ with .GetTerms "tags" }}
@@ -25,8 +26,8 @@
 
   {{ if or .PrevInSection .NextInSection }}
     <nav class="post__nav wrap-narrow" aria-label="More in this section">
-      {{ with .NextInSection }}<a href="{{ .RelPermalink }}"><small>← Newer</small>{{ .Title }}</a>{{ else }}<span></span>{{ end }}
-      {{ with .PrevInSection }}<a class="next" href="{{ .RelPermalink }}"><small>Older →</small>{{ .Title }}</a>{{ end }}
+      {{ with .NextInSection }}{{ $n := partialCached "bilingual.html" . .RelPermalink }}<a href="{{ .RelPermalink }}"><small>{{ partial "t.html" (dict "en" "← Newer" "es" "← Más reciente") }}</small>{{ partial "pair.html" (dict "b" $n "main" $n.title "alt" $n.altTitle) }}</a>{{ else }}<span></span>{{ end }}
+      {{ with .PrevInSection }}{{ $p := partialCached "bilingual.html" . .RelPermalink }}<a class="next" href="{{ .RelPermalink }}"><small>{{ partial "t.html" (dict "en" "Older →" "es" "Anterior →") }}</small>{{ partial "pair.html" (dict "b" $p "main" $p.title "alt" $p.altTitle) }}</a>{{ end }}
     </nav>
   {{ end }}
 </article>

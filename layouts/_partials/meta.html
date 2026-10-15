@@ -1,4 +1,7 @@
+{{ $b := partialCached "bilingual.html" . .RelPermalink }}
+{{ $months := slice "ene" "feb" "mar" "abr" "may" "jun" "jul" "ago" "sep" "oct" "nov" "dic" }}
+{{ $min := dict $b.lang $b.minutes $b.alt (cond $b.hasAlt $b.altMinutes $b.minutes) }}
 <p class="meta">
-  {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "2 Jan 2006" }}</time>{{ end }}
-  {{ if .ReadingTime }}<span>{{ .ReadingTime }} min read</span>{{ end }}
+  {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ partial "t.html" (dict "en" (.Format "2 Jan 2006") "es" (printf "%d %s %d" .Day (index $months (sub (int .Month) 1)) .Year)) }}</time>{{ end }}
+  <span>{{ partial "t.html" (dict "en" (printf "%v min read" $min.en) "es" (printf "%v min de lectura" $min.es)) }}</span>
 </p>

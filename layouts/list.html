@@ -25,13 +25,13 @@
       </div>
       {{ if gt $pager.TotalPages 1 }}
         <nav class="pager" aria-label="Pagination">
-          {{ with $pager.Prev }}<a href="{{ .URL }}">← Newer</a>{{ else }}<span></span>{{ end }}
+          {{ with $pager.Prev }}<a href="{{ .URL }}">{{ partial "t.html" (dict "en" "← Newer" "es" "← Más recientes") }}</a>{{ else }}<span></span>{{ end }}
           <span>{{ $pager.PageNumber }} / {{ $pager.TotalPages }}</span>
-          {{ with $pager.Next }}<a href="{{ .URL }}">Older →</a>{{ else }}<span></span>{{ end }}
+          {{ with $pager.Next }}<a href="{{ .URL }}">{{ partial "t.html" (dict "en" "Older →" "es" "Anteriores →") }}</a>{{ else }}<span></span>{{ end }}
         </nav>
       {{ end }}
     {{ else }}
-      <p class="empty">Nothing here yet. Soon.</p>
+      <p class="empty">{{ partial "t.html" (dict "en" "Nothing here yet. Soon." "es" "Nada por aquí todavía. Pronto.") }}</p>
     {{ end }}
   {{ end }}
 </section>

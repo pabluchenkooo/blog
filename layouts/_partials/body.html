@@ -1,0 +1,10 @@
+{{- /* Renders a page body from the bilingual partial: both languages when there is a
+       translation (the switch shows one), otherwise the body plus a short
+       "only in English/Spanish" note for readers on the other language. */ -}}
+{{ if .hasAlt }}
+  <div class="prose" data-l="{{ .lang }}" lang="{{ .lang }}">{{ .body }}</div>
+  <div class="prose" data-l="{{ .alt }}" lang="{{ .alt }}">{{ .altBody }}</div>
+{{ else }}
+  {{ if eq .lang "en" }}<p class="lang-note" data-l="es" lang="es">Este texto solo está en inglés.</p>{{ else }}<p class="lang-note" data-l="en" lang="en">This text is only in Spanish.</p>{{ end }}
+  <div class="prose" lang="{{ .lang }}">{{ .body }}</div>
+{{ end }}

@@ -1,0 +1,27 @@
+{{/* Splits a page into its own language and an optional translation written below a
+     line with just <!--es--> (or <!--en--> when the post is in Spanish).
+     Front matter title_es / description_es (or _en) translate the title and description.
+     Returns: lang, alt, hasAlt, body, altBody, title, altTitle, desc, altDesc,
+     summary, altSummary, minutes, altMinutes. */}}
+{{ $lang := partial "lang.html" . }}
+{{ $alt := cond (eq $lang "es") "en" "es" }}
+{{ $marker := "@@lang-split@@" }}
+{{ $raw := replaceRE `(?m)^[ \t]*<!--\s*(?:en|es)\s*-->[ \t]*$` $marker .RawContent 1 }}
+{{ $hasAlt := in $raw $marker }}
+{{ $body := .Content }}
+{{ $altBody := "" }}
+{{ if $hasAlt }}
+  {{ $parts := split $raw $marker }}
+  {{ $body = .RenderString (dict "display" "block") (index $parts 0) }}
+  {{ $altBody = .RenderString (dict "display" "block") (index $parts 1) }}
+{{ end }}
+{{ $words := countwords (plainify $body) }}
+{{ $altWords := countwords (plainify $altBody) }}
+{{ return dict
+  "lang" $lang "alt" $alt "hasAlt" $hasAlt
+  "body" $body "altBody" $altBody
+  "title" .Title "altTitle" (index .Params (printf "title_%s" $alt) | default .Title)
+  "desc" .Description "altDesc" (index .Params (printf "description_%s" $alt) | default "")
+  "summary" (plainify $body | htmlUnescape) "altSummary" (plainify $altBody | htmlUnescape)
+  "minutes" (math.Max 1 (math.Ceil (div $words 213.0))) "altMinutes" (math.Max 1 (math.Ceil (div $altWords 213.0)))
+}}

@@ -3,7 +3,31 @@ languageCode = "en-us"
 title = "Pablo Junco"
 
 summaryLength = 30
+
 enableRobotsTXT = true
+
+# Every page also exists under /en/ and /es/ (same page, language fixed by the
+# address) so a shared link opens in that language. The plain address picks
+# the reader's last choice or browser language.
+[outputFormats.en]
+  mediaType = "text/html"
+  isHTML = true
+  permalinkable = true
+  path = "en"
+  baseName = "index"
+[outputFormats.es]
+  mediaType = "text/html"
+  isHTML = true
+  permalinkable = true
+  path = "es"
+  baseName = "index"
+
+[outputs]
+  home = ["html", "rss", "en", "es"]
+  section = ["html", "rss", "en", "es"]
+  page = ["html", "en", "es"]
+  taxonomy = ["html", "rss", "en", "es"]
+  term = ["html", "rss", "en", "es"]
 
 # Standalone images render as <figure> (positions/captions); images on
 # consecutive lines stay in one paragraph and become a photo row.
@@ -15,6 +39,7 @@ enableRobotsTXT = true
 
 [params]
   description = "Field notes from climbing walls, bikepacking routes, highlines, workshops, and wandering thoughts."
+  description_es = "Notas de campo de muros de escalada, rutas de bikepacking, highlines, talleres y pensamientos sueltos."
 
   # Where videos are served from (uploaded by .githooks/pre-push, see docs/adr/0001-videos-on-engram.md)
   engram = "https://engram.pabluchenko.de/videos"

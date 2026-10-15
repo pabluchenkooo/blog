@@ -1,0 +1,6 @@
+{{/* The language fixed by the address (/en/... or /es/...), or "" on the plain address. */}}
+{{ $l := "" }}
+{{ with .OutputFormats.Get "html" }}{{ if ne $.RelPermalink .RelPermalink }}
+  {{ $l = cond (hasPrefix $.RelPermalink (relURL "es/")) "es" "en" }}
+{{ end }}{{ end }}
+{{ return $l }}
