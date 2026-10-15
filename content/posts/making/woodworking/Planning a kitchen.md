@@ -1,8 +1,10 @@
 ---
 title: Planning a kitchen
+title_es: Planificando una cocina
 date: 2026-10-11
 draft: false
 description: Designing a new kitchen for Daniel, from a SketchUp sketch to a parametric model and a walk-through.
+description_es: Diseñando una cocina nueva para Daniel, desde un boceto en SketchUp hasta un modelo paramétrico y un recorrido en video.
 tags:
   - blog
   - woodworking
@@ -38,3 +40,35 @@ To get a feel for the space I made a short walk-through video.
 ![wide|Walk-through](static/images/posts/making/woodworking/kitchen/kitchen-walkthrough.mp4)
 
 Next: checking the measurements on site again and making a cut list.
+
+<!--es-->
+
+Daniel me pidió ayuda con la cocina de su apartamento. El espacio no es muy grande: unos 3,1 m de largo y 2 m de ancho, con un mesón a lo largo de una pared, una puerta que abre hacia adentro y una ventana al fondo. Todo tiene que caber: el horno que ya tiene, una nevera nueva, un lavaplatos pequeño (60 cm), una lavadora (70 cm) y la Sage Barista Express.
+
+![wide|El plan: contrachapado por todas partes y un mesón de linóleo oscuro](static/images/posts/making/woodworking/kitchen/from_door.jpg)
+
+## De SketchUp a algo que pueda cambiar
+
+Había medido el espacio y empecé con SketchUp, pero no quería que el diseño viviera en una app en la nube. Así que pasé las medidas a [OpenSCAD](https://openscad.org/), donde la cocina es un pequeño programa: los muebles a lo largo del mesón son una lista (cajones 38, horno 60, lavaplatos 60, lavavajillas 60, lavadora 70 cm) y al cambiar un número se mueve todo lo que viene después.
+
+![openscad_plan.jpg](static/images/posts/making/woodworking/kitchen/openscad_plan.jpg)
+![openscad_3d.jpg](static/images/posts/making/woodworking/kitchen/openscad_3d.jpg)
+
+## La pared de enfrente
+
+La primera versión tenía una despensa completa en la pared opuesta al mesón. Funcionaba, pero hacía que el espacio se sintiera todavía más pequeño. La versión final deja esa pared liviana: la nevera, un aparador bajo con dos repisas flotantes encima, y una estantería de piso a techo detrás de la puerta, en la esquina que de otra forma sería espacio muerto. Las referencias eran roble claro y estanterías de despensa japonesas; al final todo es contrachapado de abedul.
+
+![wide|Vista desde la ventana](static/images/posts/making/woodworking/kitchen/from_window.jpg)
+
+Las dos paredes de frente, cada una con la otra recortada: el mesón a la izquierda, la pared de enfrente a la derecha.
+
+![wall_counter.jpg](static/images/posts/making/woodworking/kitchen/wall_counter.jpg)
+![wall_opposite.jpg](static/images/posts/making/woodworking/kitchen/wall_opposite.jpg)
+
+## Recorriéndola
+
+Para hacerme una idea del espacio hice un video corto recorriéndola.
+
+![wide|Recorrido](static/images/posts/making/woodworking/kitchen/kitchen-walkthrough.mp4)
+
+Lo que sigue: volver a revisar las medidas en el sitio y hacer una lista de cortes.

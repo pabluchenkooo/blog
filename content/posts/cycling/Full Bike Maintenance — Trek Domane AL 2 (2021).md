@@ -1,5 +1,6 @@
 ---
 title: Full Bike Maintenance — Trek Domane AL 2
+title_es: Mantenimiento completo — Trek Domane AL 2
 date: 2026-03-21
 draft: false
 tags:
@@ -42,3 +43,38 @@ One early learning that might be obvious to y'all, you use a lot of consumables:
 - Grease
 - Cleaner - Soap
 
+<!--es-->
+
+Me puse la tarea de reconstruir mi bici de ruta, una Trek Domane AL 2. La compré a finales de 2020. En ese entonces tenía apenas 19 años y estaba todavía más quebrado que hoy. Solo pude comprarla porque había ganado algo de plata rehaciendo la cocina de mis papás en su casa.
+Aunque en general intento no apegarme a las cosas materiales, esta bici tiene un significado emocional muy grande para mí. Representa varias cosas: el fruto de mi trabajo y de mi capacidad de aprender algo por mi cuenta, mi medio de transporte durante 5 años para ir a la universidad y hasta el día de hoy, el deporte que me alejó de malos hábitos y que me da momentos felices rodeado de las personas que hoy llamo amigos, el vehículo de incontables viajes con mi mejor amigo de la universidad (sin importar si eran lejos o cerca).
+
+![](static/images/posts/cycling/maintenance/IMG_2218.jpeg)
+![](static/images/posts/cycling/maintenance/IMG_0729.jpeg)
+
+
+En este post quiero compartir cómo le hice el mantenimiento a mi bici en mi apartamento y las herramientas que usé. Ojalá alguien por ahí haya tenido la misma idea y pueda aprender algo de mi experiencia.
+
+Bueno, ¿por dónde empezar, no? Una bici tiene un montón de componentes: dirección, eje de pedalier, desviadores trasero y delantero, bujes, radios, piñones, casete, frenos... y eso es solo el comienzo; cada uno ha evolucionado con los años y es un agujero de conejo sin fondo.
+
+Estaba acostumbrado a llevar la bici a mantenimiento cada dos meses (era muchísimo más barato en Colombia). Pero desde que vivo en Alemania no he podido hacerle mantenimiento, y se nota el óxido y el desgaste en las piezas de metal cuando sales del invierno (sí, no dejo de ir en bici en invierno).
+
+
+
+![left](static/images/posts/cycling/maintenance/IMG_0741.jpeg)
+
+La desarmé toda, hasta las ruedas. Aprendí a la fuerza, digamos, a centrar ruedas, sacar un eje de pedalier, hacerle servicio a los bujes y cambiar la dirección. Digo a la fuerza porque me tocó hacerlo a finales de marzo, justo cuando el clima está mejorando y uno quiere rodar en serio. Pero después de ese invierno tan largo el mantenimiento era necesario.
+Empecé por los frenos, después los cables de los cambios, saqué las llantas, corté todos los radios, solté el manubrio, desatornillé las bielas y lavé el marco y todos los demás componentes en la bañera. La foto de la izquierda es el marco casi completamente desnudo. Sacar el eje de pedalier es toda una lucha, como iba a descubrir después.
+
+Esto es lo que tenía en mi caja de herramientas:
+- [DURATECH Bicycle Repair Kit 41 Pieces with Tool Box](https://www.amazon.de/dp/B0BHQ4KLF7?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) No lo compren.
+- Juego de llaves fijas de 4 a 32
+- Juego de destornilladores
+- Un soporte de centrado bien barato
+
+El primero es barato y aunque cumple, se siente que se va a romper en cualquier momento; no se lo recomendaría a nadie.
+
+Un aprendizaje temprano que quizás para ustedes sea obvio: se usan muchos consumibles:
+- Desengrasante: escogí uno ecológico que hasta decía que era vegano.
+- WD-40
+- Grasa
+- Limpiador: jabón
